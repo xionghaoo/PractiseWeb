@@ -1,5 +1,6 @@
 package xh.zero.service.impl;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import xh.zero.dao.RoleDao;
 import xh.zero.dao.UserDao;
 import xh.zero.domain.Role;
@@ -41,5 +42,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long userId) {
         userDao.delete(userId);
+    }
+
+    @Override
+    public User login(String username, String password) {
+        try {
+            return userDao.findUserByUsernameAndPassword(username, password);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

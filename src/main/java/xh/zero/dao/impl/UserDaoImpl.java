@@ -1,5 +1,6 @@
 package xh.zero.dao.impl;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -60,5 +61,11 @@ public class UserDaoImpl implements UserDao {
     public void delete(Long userId) {
         jdbcTemplate.update("delete from sys_user_role where userId=?", userId);
         jdbcTemplate.update("delete from sys_user where id=?", userId);
+    }
+
+    @Override
+    public User findUserByUsernameAndPassword(String username, String password) throws EmptyResultDataAccessException {
+        User user = jdbcTemplate.queryForObject("select * from sys_user where username=? and password=?", new BeanPropertyRowMapper<User>(User.class), username, password);
+        return user;
     }
 }

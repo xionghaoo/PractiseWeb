@@ -10,4 +10,6 @@ public interface UserService {
     void saveUser(User user, Long[] roleIds);
 
     void delete(Long userId);
+
+    User login(String username, String password);
 }

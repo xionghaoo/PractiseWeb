@@ -10,6 +10,7 @@ import xh.zero.service.RoleService;
 import xh.zero.service.UserService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,6 +21,17 @@ public class UserController {
     private UserService userService;
     @Resource
     private RoleService roleService;
+
+    @RequestMapping("/login")
+    public String login(String username, String password, HttpSession session) {
+        User user = userService.login(username, password);
+        if (user != null) {
+            session.setAttribute("user", user);
+            return "redirect:/index.jsp";
+        } else {
+            return "redirect:/login.jsp";
+        }
+    }
 
     @RequestMapping("/list")
     public ModelAndView list(ModelAndView modelAndView) {
