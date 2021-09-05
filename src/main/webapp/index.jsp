@@ -9,8 +9,8 @@
 </head>
 <body>
 	<%
-		response.sendRedirect(request.getContextPath()+"/pages/main.jsp");
-//		response.sendRedirect(request.getContextPath() + "/test");
+//		response.sendRedirect(request.getContextPath()+"/pages/main.jsp");
+		response.sendRedirect(request.getContextPath() + "/exception");
 	%>
 </body>
 </html>

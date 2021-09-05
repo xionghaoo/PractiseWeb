@@ -2,6 +2,7 @@ package xh.zero.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -13,5 +14,12 @@ public class TestController {
         modelAndView.addObject("name", "haha");
         modelAndView.setViewName("test");
         return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping("/exception")
+    public void exception() {
+//        String str = "null";
+//        Integer n = (Integer) String.valueOf(str);
     }
 }
