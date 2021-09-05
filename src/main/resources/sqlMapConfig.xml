@@ -8,6 +8,10 @@
         <typeAlias type="xh.zero.domain.User" alias="user"/>
     </typeAliases>
 
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="xh.zero.aop.DateTypeHandler"/>-->
+<!--    </typeHandlers>-->
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

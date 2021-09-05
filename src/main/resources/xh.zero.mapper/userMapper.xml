@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xh.zero.aop.UserMapper">
+
+    <sql id="selectAll">
+        select * from sys_user
+    </sql>
+
     <insert id="save" parameterType="user">
         insert into sys_user values (null, #{username}, #{email}, #{password}, #{phoneNum})
     </insert>
@@ -11,5 +16,26 @@
     </select>
     <select id="findById" parameterType="int" resultType="user">
         select * from sys_user where id=#{id}
+    </select>
+
+    <select id="findByCondition" parameterType="user" resultType="user">
+        <include refid="selectAll"/>
+        <where>
+            <if test="id!=null">
+                and id=#{id}
+            </if>
+            <if test="username!=null">
+                and username=#{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByIds" parameterType="list" resultType="user">
+        <include refid="selectAll"/>
+        <where>
+            <foreach collection="list" open="id in(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
     </select>
 </mapper>

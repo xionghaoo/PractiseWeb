@@ -8,4 +8,7 @@ public interface UserMapper {
     public void save(User user);
     public List<User> findAll();
     public User findById(int id);
+
+    public List<User> findByCondition(User user);
+    public List<User> findByIds(List<Integer> ids);
 }
