@@ -2,10 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="xh.zero"/>
 
@@ -38,7 +40,7 @@
     </bean>
 
     <!-- aop测试 -->
-    <aop:aspectj-autoproxy/>
+<!--    <aop:aspectj-autoproxy/>-->
 <!--    <bean id="target" class="xh.zero.aop.Target"/>-->
 <!--    <bean id="myAspect" class="xh.zero.aop.MyAspect"/>-->
 
@@ -49,4 +51,25 @@
 <!--            <aop:around method="surrounding" pointcut-ref="myPointcut"/>-->
 <!--        </aop:aspect>-->
 <!--    </aop:config>-->
+    <bean id="accountDao" class="xh.zero.dao.impl.AccountDaoImpl"/>
+    <bean id="accountService" class="xh.zero.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置事务增强   -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 事务增强aop织入   -->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(public void xh.zero.service.impl.AccountServiceImpl.*(..))"/>
+    </aop:config>
+
 </beans>
