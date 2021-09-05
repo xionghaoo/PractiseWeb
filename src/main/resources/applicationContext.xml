@@ -51,25 +51,24 @@
 <!--            <aop:around method="surrounding" pointcut-ref="myPointcut"/>-->
 <!--        </aop:aspect>-->
 <!--    </aop:config>-->
-    <bean id="accountDao" class="xh.zero.dao.impl.AccountDaoImpl"/>
-    <bean id="accountService" class="xh.zero.service.impl.AccountServiceImpl">
-        <property name="accountDao" ref="accountDao"/>
-    </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- 事务注解驱动   -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
     <!-- 配置事务增强   -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
+<!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="*"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
 
     <!-- 事务增强aop织入   -->
-    <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(public void xh.zero.service.impl.AccountServiceImpl.*(..))"/>
-    </aop:config>
+<!--    <aop:config>-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut="execution(public void xh.zero.service.impl.AccountServiceImpl.*(..))"/>-->
+<!--    </aop:config>-->
 
 </beans>

@@ -1,10 +1,12 @@
 package xh.zero.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import xh.zero.dao.AccountDao;
 
 import javax.annotation.Resource;
 
+@Repository("accountDao")
 public class AccountDaoImpl implements AccountDao {
 
     @Resource
