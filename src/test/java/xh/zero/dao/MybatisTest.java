@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import xh.zero.aop.Order;
+import xh.zero.aop.OrderMapper;
 import xh.zero.aop.UserMapper;
 import xh.zero.domain.User;
 
@@ -29,6 +31,7 @@ public class MybatisTest {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 //        List<User> users = userMapper.findAll();
 //        System.out.println(users);
 
@@ -47,15 +50,23 @@ public class MybatisTest {
 
 //        List<User> users = userMapper.findByCondition(user);
 
-        PageHelper.startPage(2, 2);
-        List<User> r = userMapper.findAll();
-        for (int i = 0; i < r.size(); i++) {
-            System.out.println(r.get(i));
-        }
-        PageInfo<User> pageInfo = new PageInfo<>(r);
-        System.out.println("current page: " + pageInfo.getPageNum());
-        System.out.println("total page: " + pageInfo.getPages());
-        System.out.println("total num: " + pageInfo.getTotal());
+//        PageHelper.startPage(2, 2);
+//        List<User> r = userMapper.findAll();
+//        for (int i = 0; i < r.size(); i++) {
+//            System.out.println(r.get(i));
+//        }
+//        PageInfo<User> pageInfo = new PageInfo<>(r);
+//        System.out.println("current page: " + pageInfo.getPageNum());
+//        System.out.println("total page: " + pageInfo.getPages());
+//        System.out.println("total num: " + pageInfo.getTotal());
+
+//        List<Order> orders = orderMapper.findAll();
+//        System.out.println(orders);
+
+        List<User> users = userMapper.findAll();
+
+        System.out.println(users);
+
         sqlSession.close();
     }
 }

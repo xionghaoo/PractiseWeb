@@ -1,5 +1,7 @@
 package xh.zero.domain;
 
+import xh.zero.aop.Order;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class User {
     private String password;
     private String phoneNum;
     private Date birthday;
+
+    private List<Order> orders;
 
     // 用户角色
     private List<Role> roles;
@@ -71,6 +75,14 @@ public class User {
         this.birthday = birthday;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -80,7 +92,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", birthday=" + birthday +
+                ", orders=" + orders +
                 ", roles=" + roles +
-                '}';
+                '}' + "\n";
     }
 }

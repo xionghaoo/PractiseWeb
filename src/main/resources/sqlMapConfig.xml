@@ -6,6 +6,7 @@
 
     <typeAliases>
         <typeAlias type="xh.zero.domain.User" alias="user"/>
+        <typeAlias type="xh.zero.aop.Order" alias="order"/>
     </typeAliases>
 
     <typeHandlers>
@@ -31,5 +32,6 @@
     </environments>
     <mappers>
         <mapper resource="xh.zero.mapper/userMapper.xml"/>
+        <mapper resource="xh.zero.mapper/orderMapper.xml"/>
     </mappers>
 </configuration>
