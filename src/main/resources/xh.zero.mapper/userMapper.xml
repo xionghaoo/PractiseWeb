@@ -9,7 +9,7 @@
     </sql>
 
     <insert id="save" parameterType="user">
-        insert into sys_user values (null, #{username}, #{email}, #{password}, #{phoneNum})
+        insert into sys_user values (null, #{username}, #{email}, #{password}, #{phoneNum}, #{birthday})
     </insert>
     <select id="findAll" resultType="user">
         select * from sys_user

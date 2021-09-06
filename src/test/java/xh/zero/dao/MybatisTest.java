@@ -1,18 +1,26 @@
 package xh.zero.dao;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xh.zero.aop.UserMapper;
 import xh.zero.domain.User;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:applicationContext.xml")
 public class MybatisTest {
 
     @Test
@@ -23,20 +31,31 @@ public class MybatisTest {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 //        List<User> users = userMapper.findAll();
 //        System.out.println(users);
-        User user = new User();
-//        user.setId(7L);
-        user.setUsername("xixihaha");
-//        user.setPassword("123456");
-//        user.setEmail("xx@12.45");
+
+//        User user = new User();
+////        user.setId(7L);
+//        user.setUsername("rose");
+//        user.setPassword("123453");
+//        user.setEmail("weq@erw.com");
+//        user.setBirthday(new Date());
 //        userMapper.save(user);
 
-        List<Integer> ids = new ArrayList<>();
-        ids.add(1);
-        ids.add(2);
-        List<User> users = userMapper.findByIds(ids);
+//        List<Integer> ids = new ArrayList<>();
+//        ids.add(1);
+//        ids.add(2);
+//        List<User> users = userMapper.findByIds(ids);
 
 //        List<User> users = userMapper.findByCondition(user);
-        System.out.println(users);
+
+        PageHelper.startPage(2, 2);
+        List<User> r = userMapper.findAll();
+        for (int i = 0; i < r.size(); i++) {
+            System.out.println(r.get(i));
+        }
+        PageInfo<User> pageInfo = new PageInfo<>(r);
+        System.out.println("current page: " + pageInfo.getPageNum());
+        System.out.println("total page: " + pageInfo.getPages());
+        System.out.println("total num: " + pageInfo.getTotal());
         sqlSession.close();
     }
 }

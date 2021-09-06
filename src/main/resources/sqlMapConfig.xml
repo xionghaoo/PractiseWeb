@@ -8,9 +8,15 @@
         <typeAlias type="xh.zero.domain.User" alias="user"/>
     </typeAliases>
 
-<!--    <typeHandlers>-->
-<!--        <typeHandler handler="xh.zero.aop.DateTypeHandler"/>-->
-<!--    </typeHandlers>-->
+    <typeHandlers>
+        <typeHandler handler="xh.zero.aop.DateTypeHandler"/>
+    </typeHandlers>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
 
     <environments default="development">
         <environment id="development">

@@ -1,5 +1,6 @@
 package xh.zero.domain;
 
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -9,6 +10,7 @@ public class User {
     private String email;
     private String password;
     private String phoneNum;
+    private Date birthday;
 
     // 用户角色
     private List<Role> roles;
@@ -61,6 +63,14 @@ public class User {
         this.roles = roles;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -69,6 +79,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
+                ", birthday=" + birthday +
+                ", roles=" + roles +
                 '}';
     }
 }
