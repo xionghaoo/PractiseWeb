@@ -17,6 +17,6 @@
         </association>
     </resultMap>
     <select id="findAll" resultMap="orderMap">
-        select *, o.id oid from sys_user u inner join orders o on u.id = o.uid;
+        select *, o.id oid from sys_user u, orders o where u.id = o.uid;
     </select>
 </mapper>

@@ -32,8 +32,8 @@ public class MybatisTest {
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
-//        List<User> users = userMapper.findAll();
-//        System.out.println(users);
+        List<User> users = userMapper.findAllWithRoles();
+        System.out.println(users);
 
 //        User user = new User();
 ////        user.setId(7L);
@@ -63,9 +63,9 @@ public class MybatisTest {
 //        List<Order> orders = orderMapper.findAll();
 //        System.out.println(orders);
 
-        List<User> users = userMapper.findAll();
-
-        System.out.println(users);
+//        List<User> users = userMapper.findAll();
+//        User user = userMapper.findById(2);
+//        System.out.println(user);
 
         sqlSession.close();
     }

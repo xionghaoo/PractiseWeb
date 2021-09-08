@@ -31,7 +31,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="xh.zero.mapper/userMapper.xml"/>
-        <mapper resource="xh.zero.mapper/orderMapper.xml"/>
+<!--        <mapper resource="xh.zero.mapper/userMapper.xml"/>-->
+<!--        <mapper resource="xh.zero.mapper/orderMapper.xml"/>-->
+        <package name="xh.zero.aop"/>
     </mappers>
 </configuration>
